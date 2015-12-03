@@ -6,7 +6,7 @@ sudo apt-get install Suricata
 
 Добавляем правила в iptables
 
-iptables -t mangle -I PREROUTING -p tcp -m tcp --dport 80 -m mark ! --mark 0x1/0x1 -j NFQUEUE --queue-num 0
+iptables -t mangle -A PREROUTING -p tcp -m tcp --dport 80 -m mark ! --mark 0x1/0x1 -j NFQUEUE --queue-num 0
 
 # детектируем пакет, на который сработало правило
 iptables -t mangle -A PREROUTING -p tcp -m tcp --dport 80 -m mark --mark 0x2/0xfe -j LOG --log-prefix "python packet detected"
